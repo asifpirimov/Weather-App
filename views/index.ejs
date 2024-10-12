@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="<%= weatherType %>">
+    <h1>Weather App</h1>
+    <% if (!weather) { %>
+    <form action="/weather" method="get">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <button type="submit">Get Weather</button>
+    </form>
+    <% } %>
+
+    <% if (weather) { %>
+        <h2>Weather in <%= weather.city %></h2>
+        <p>Temperature: <%= weather.temperature %>°C</p>
+        <p>Description: <%= weather.description %></p>
+        <img src="http://openweathermap.org/img/wn/<%= weather.icon %>@2x.png" alt="Weather icon">
+    <% } %>
+
+    <% if (error) { %>
+        <p style="color:red;"><%= error %></p>
+    <% } %>
+
+    <% if (weatherType === 'cloudy') { %>
+        <div class="clouds"></div>
+    <% } %>
+
+    <% if (weatherType === 'rainy') { %>
+        <div class="rain"></div>
+    <% } %>
+
+    <script>
+        // Check if the weather type is rainy
+        if (document.body.classList.contains('rainy')) {
+            const rainContainer = document.createElement('div');
+            rainContainer.classList.add('rain-container');
+            document.body.appendChild(rainContainer);
+
+            for (let i = 0; i < 100; i++) { // Create 100 raindrops
+                const drop = document.createElement('div');
+                drop.classList.add('raindrop');
+                drop.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+                drop.style.animationDuration = Math.random() * 1 + 0.5 + 's'; // Random speed
+                rainContainer.appendChild(drop);
+            }
+        }
+    </script>
+</body>
+</html>

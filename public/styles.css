@@ -1,0 +1,144 @@
+/* Basic styles */
+body {
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Center-align text */
+}
+
+/* Default body styles */
+body.default {
+    background-image: linear-gradient(to bottom, #f7f7f7, #e7e7e7);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 36px; /* Size of the main heading */
+    margin-bottom: 20px; /* Space below the heading */
+    color: #000000; /* Bright color for the heading */
+}
+
+/* Weather-specific background styles */
+body.sunny {
+    background: linear-gradient(to top, #FFDD00, #FFEE88);
+    animation: sunny-glow 3s infinite alternate;
+}
+
+body.cloudy {
+    background: linear-gradient(to top, #B0BEC5, #ECEFF1);
+}
+
+body.rainy {
+    background: linear-gradient(to top, #4ECDC4, #556270);
+}
+
+body.thunderstorm {
+    background: linear-gradient(to top, #333, #555);
+}
+
+body.snow {
+    background: linear-gradient(to top, #F7F7F7, #C7C5B8);
+}
+
+body.mist {
+    background: linear-gradient(to top, #E5E5EA, #C7C5B8);
+}
+
+body.windy {
+    background: linear-gradient(to top, #87CEEB, #4682B4);
+}
+
+/* Animations */
+@keyframes sunny-glow {
+    from { background-color: #FFDD00; }
+    to { background-color: #FFEE88; }
+}
+
+/* Clouds animation */
+.clouds {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/clouds.png') repeat-x;
+    background-size: 400px 100px;
+    animation: moveClouds 30s linear infinite;
+}
+
+@keyframes moveClouds {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 0; }
+}
+
+/* Raindrop animation */
+.raindrop {
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    animation: fall linear infinite;
+    opacity: 0.8; /* Slightly transparent */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Move down to the bottom of the viewport */
+    }
+}
+
+/* Rain animation */
+.rain {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/raindrops.png') repeat top center;
+    background-size: 50px 50px;
+    animation: moveRain 1s linear infinite;
+}
+
+@keyframes moveRain {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+/* Input field styles */
+input[type="text"] {
+    padding: 10px; /* Padding inside the input */
+    border: 2px solid #333; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    width: 300px; /* Width of the input field */
+    margin-bottom: 10px; /* Space below the input */
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px; /* Padding inside the button */
+    background-color: #FFDD00; /* Button background color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #FFD700; /* Darker shade on hover */
+}
+
+/* Additional Styles for Weather Specific Animations */
+body.rainy .raindrop {
+    animation-duration: 0.5s; /* Speed of the raindrop */
+}
